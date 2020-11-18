@@ -1,32 +1,39 @@
-//test file
+
   <!DOCTYPE html>
   <html>
   <head>
   	<title>test</title>
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" crossorigin="anonymous"></script>
-  	  <script type="text/javascript">
-  	//getsong funtion
-function getsong(song) {
-  axion.get('https://jiosaavn-api.vercel.app/search?query='+song)
-       .then(response => {
-         axion.get('https://jiosaavn-api.vercel.app/song?id='+response.data[0].id)
-              .then(response =>{
-              alert(response.data.media_url);
-              })
-              .catch(error=> alert('brocken'));
-       })
-       .catch(error=> alert('brocken outer'));
+  	<style type="text/css">
+  		.centers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  border: 3px solid green; 
 }
+ .center {
+  margin: auto;
+  width: 50%;
+  
+}
+  	</style>
+  	<script type="text/javascript">
+  	//getsong funtion
+
 function loadXMLDoc() {
+	var x = document.getElementById("song").value;
   var xhttp = new XMLHttpRequest();
   
-  xhttp.open("GET", "https://codemusic.vercel.app/search?query=Happy", true);
+  xhttp.open("GET", "https://codemusic.vercel.app/search?query="+x, true);
   xhttp.send();
   xhttp.onload = () => {
   	if(xhttp.status==200){
   		var k = JSON.parse(xhttp.response)
+  		
   		document.getElementById("demo").innerHTML ="<img src='"+k[0].image+"' alt='"+k[0].title+"' width='420' height='420' style='vertical-align:middle'>"+"<h1>"+k[0].title+"</h1>";
   		play(k[0].id);
+  	
+
   	}
   }
 }
@@ -48,11 +55,14 @@ function play(kid){
 
   </head>
   <body >
-  	<div id="demo">
-<button type="button" onclick="loadXMLDoc()">Change Content</button>
+  	<div class="center">
+  <input type="text" id="song" name="search" value="happy">
+  <button type="submit"  onclick="loadXMLDoc()">search</button>
+  </div>
+<div class="center">
+	<div id="demo"></div>
+	<div id="player" ></div>
 </div>
-<div  id="player">
-<button type="button" >play</button>
-</div>
+
   </body>
   </html>
