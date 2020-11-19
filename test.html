@@ -11,6 +11,7 @@
       .full{
         width:100%;
         height:100%;
+
       }
   		.centers {
   display: flex;
@@ -19,18 +20,15 @@
   
  
 }
-.centers button{
- align-items: right;
- border-radius: 51%;
-}
+
  .center {	
-   
   margin: auto;
   width: 50%;
+  align-items: center;
   
 }
 .stop{
-  position: fixed;
+  position: fixed ;
 }
 .players{
   position: fixed;
@@ -59,7 +57,7 @@ function loadXMLDoc() {
   		var k = JSON.parse(xhttp.response)
 for (i = 0; i < k.length; i++) 
 {
-  		good ="<button type='button' class='btn btn-light full' onclick='playSong(\""+k[i].id+"\")'><div class='centers'><img src='"+k[i].image+"' alt='"+k[i].title+"' width=141 height=141>"+"<h1>"+k[i].title+"</h1><p>" +k[i].description +"</p></button></div><hr>";
+  		good ="<button type='button' class='btn btn-light full' onclick='playSong(\""+k[i].id+"\")'><div class='center'><img src='"+k[i].image+"' alt='"+k[i].title+"' width=141 height=141>"+"<h1>"+k[i].title+"</h1><p>" +k[i].description +"</p></button></div><hr>";
   		
   		
   	    god=god+good;
