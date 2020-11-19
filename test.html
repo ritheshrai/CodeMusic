@@ -8,22 +8,29 @@
       body{
         background-color: black;
       }
+      .full{
+        width:100%;
+        height:100%;
+      }
   		.centers {
   display: flex;
   align-items: center;
   height: 200px;
-  background-color: gray;
-  border: 3px solid green; 
+  
+ 
 }
 .centers button{
-  float: right;
-  color: pink;
+ align-items: right;
+ border-radius: 51%;
 }
  .center {	
-  
+   
   margin: auto;
   width: 50%;
   
+}
+.stop{
+  position: fixed;
 }
 .players{
   position: fixed;
@@ -35,15 +42,14 @@
   text-align: center;
 }
 .players audio {
-  background-color: black;
-  color:white;
+ 
 }
   	</style>
   	<script type="text/javascript">
   	//getsong funtion
 
 function loadXMLDoc() {
-	var x = document.getElementById("song").value;
+	var x = document.getElementById("searching").value;
   var xhttp = new XMLHttpRequest();
   var good=" ",god=""
   xhttp.open("GET", "https://codemusic.vercel.app/search?query="+x, true);
@@ -53,7 +59,7 @@ function loadXMLDoc() {
   		var k = JSON.parse(xhttp.response)
 for (i = 0; i < k.length; i++) 
 {
-  		good ="<div class='centers'><img src='"+k[i].image+"' alt='"+k[i].title+"' width=141 height=141 style='vertical-align:middle'>"+"<h1>"+k[i].title+"</h1><p>" +k[i].description +"</p> <button type='submit' onclick='playSong(\""+k[i].id+"\")'>play</button> </div>";
+  		good ="<button type='button' class='btn btn-light full' onclick='playSong(\""+k[i].id+"\")'><div class='centers'><img src='"+k[i].image+"' alt='"+k[i].title+"' width=141 height=141>"+"<h1>"+k[i].title+"</h1><p>" +k[i].description +"</p></button></div><hr>";
   		
   		
   	    god=god+good;
@@ -83,16 +89,47 @@ function playss(){
 }
 
   </script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   </head>
   <body >
-  	<div class="center">
-  <input type="text" id="song" name="search" value="happy">
+     <nav class="navbar navbar-expand-lg navbar-light bg-light theme stop">
+            <a class="navbar-brand" href="#"><h1>CodeMusic</h1><h6>powerd by PePer</h6></a>
+            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto navbar-right ">
+                <li class="nav-item active">
+                  <a class="nav-link"  href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/About/about.html">About</a>
+                </li>
+               </ul>
+              <div class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" id="searching"type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" onclick="loadXMLDoc()" type="submit">Search</button>
+              </div>
+            </div>
+          </nav>
+  	<!--div class="center">
+  < <input type="text" id="searching" name="search" value="happy">
   <button type="submit"  onclick="loadXMLDoc()">search</button>
-  </div>
+  </div -->
 <div class="center">
-	<div id="demo"></div>
+	<div id="demo"> <h1 style="font-size: 39px;"> please Search for Song above </h1></div>
 	
 </div>
-<div id="player" class="players"></div>
+<div id="player" class="players bg-light theme">
+<audio id="ply" controls="play"><source src="https://aac.saavncdn.com/965/cd4a9fb027c76d50a6d530e3ce6d47f1_160.mp4" type="audio/mpeg">  Your browser does not support the audio tag.</audio>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
   </html>
