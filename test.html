@@ -2,100 +2,21 @@
   <!DOCTYPE html>
   <html>
   <head>
+    <div class="curseer"></div>
+    <link rel="shortcut icon" href="image/PePer-ICON.png" type="image/x-icon">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   	<title>test</title>
-    <style>
-@import url('https://fonts.googleapis.com/css2?family=Goldman&display=swap');
-</style>
-  	<style type="text/css">
-      body{
-        background-color: black;
-        font-family: 'Goldman', cursive !important;
-      }
-      .full{
-        width:100%;
-        height:100%;
-
-      }
-  		.centers {
-  display: flex;
-  align-items: center;
-  height: 200px;
-  
- 
-}
-
- .center {	
-  margin: auto;
-  width: 50%;
-  align-items: center;
-  
-}
-.stop{
-  position: fixed ;
-}
-.players{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: black;
-  color: white;
-  text-align: center;
-}
-.players audio {
- 
-}
-  	</style>
-  	<script type="text/javascript">
-  	//getsong funtion
-
-function loadXMLDoc() {
-	var x = document.getElementById("searching").value;
-  var xhttp = new XMLHttpRequest();
-  var good=" ",god=""
-  xhttp.open("GET", "https://codemusic.vercel.app/search?query="+x, true);
-  xhttp.send();
-  xhttp.onload = () => {
-  	if(xhttp.status==200){
-  		var k = JSON.parse(xhttp.response)
-for (i = 0; i < k.length; i++) 
-{
-  		good ="<button type='button' class='btn btn-light full' onclick='playSong(\""+k[i].id+"\")'><div class='center'><img src='"+k[i].image+"' alt='"+k[i].title+"' width=141 height=141>"+"<h1>"+k[i].title+"</h1><p>" +k[i].description +"</p></button></div><hr>";
-  		
-  		
-  	    god=god+good;
-
-  	}
-  	console.log(god);
-  	document.getElementById("demo").innerHTML="";
-  	document.getElementById("demo").innerHTML=god;
-  }
-}}
-function playSong(kid){
- var xhttp2 = new XMLHttpRequest();
- xhttp2.open("GET", "https://codemusic.vercel.app/song?id="+kid, true);
-  xhttp2.send();
-  xhttp2.onload = () => {
-  	if(xhttp2.status==200){
-  		var s = JSON.parse(xhttp2.response)
-  		document.getElementById("player").innerHTML ="";
-  		document.getElementById("player").innerHTML ="<audio id='ply' controls><source src='"+s.media_url+"' type='audio/mpeg'>  Your browser does not support the audio tag.</audio>";
-      playss();
-    }
-}
-}
-function playss(){
-  var element = document.getElementById("ply");
-  element.play();
-}
-
-  </script>
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
+    />
+  	<link rel="stylesheet" type="text/css" href="style.css">
+    
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   </head>
   <body >
-     <nav class="navbar navbar-expand-lg navbar-light bg-light theme stop">
+     <nav class="navbar navbar-expand navbar-light bg-light theme stop">
             <a class="navbar-brand" href="#"><h1>CodeMusic</h1><h6>powerd by PePer</h6></a>
             <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -120,18 +41,32 @@ function playss(){
   < <input type="text" id="searching" name="search" value="happy">
   <button type="submit"  onclick="loadXMLDoc()">search</button>
   </div -->
+  <div class="bg-image">
 <div class="center">
-	<div id="demo"> <h1 style="font-size: 39px;"> please Search for Song above </h1></div>
+	<div id="demo"> <h1 style="font-size: 39px;"> please Search for Song above </h1>
+<img 
+    src="image/search.svg" 
+    alt="Search"
+    height="87%"
+    width="100%" />
+  </div>
 	
 </div>
-<div id="player" class="players bg-light theme">
-<audio id="ply" controls="play"><source src="https://aac.saavncdn.com/965/cd4a9fb027c76d50a6d530e3ce6d47f1_160.mp4" type="audio/mpeg">  Your browser does not support the audio tag.</audio>
-</div>
 
+<div id="player">
+<audio id="myAudio" ><source src="https://aac.saavncdn.com/965/cd4a9fb027c76d50a6d530e3ce6d47f1_160.mp4" type="audio/mpeg">  Your browser does not support the audio tag.</audio>
+</div>
+<div id ="codeplay stop" >
+ <div class="alb"></div>
+  <button id="psbtn" class='btn btn-light full' onclick="pauseSong()">pause</button>
+   <button id="plybtn" class='btn btn-light full'onclick="playss()"> play</button>      
+</div>
+  </div>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="webapp.js"></script>
   </body>
   </html>
