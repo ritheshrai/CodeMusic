@@ -3,18 +3,7 @@
         margin: 0;
         padding: 0;
         font-family: 'Goldman', cursive !important;
-
-  /* Add the blur effect */
- 
-  background-color: #cccccc;
-
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-      }
+     }
       
 .bg-image {
   /* The image used */
