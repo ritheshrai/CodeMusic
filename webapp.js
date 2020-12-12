@@ -10,17 +10,17 @@ function loadXMLDoc() {
   xhttp.onload = () => {
   	if(xhttp.status==200){
   		var k = JSON.parse(xhttp.response)
+      console.log(k);
       if(k.Result=='false'){
       god ="<h1>No Results Found For now </h1>";}
       else
       {
 for (i = 0; i < k.length; i++) 
     {
-  		good ="<button type='button' class='btn btn-light full' onclick='playSong(\""+k[i].id+"\")'><div class='center'><img src='"+k[i].image+"' alt='"+k[i].title+"' width=141 height=141>"+"<h1>"+k[i].title+"</h1><p>" +k[i].description +"</p></button></div><hr>";
+  		good =`<button type='button' class='btn btn-light full' onclick='playSong(\"${k[i].id}\")'><div class='center'><img src='${k[i].image}' alt='${k[i].title}' width=141 height=141><h1>${k[i].title}</h1><p>${k[i].description}</p></button></div><hr>`;
   	    god=god+good;
   	}
   }
-  	console.log(god);
   	document.getElementById("demo").innerHTML="";
   	document.getElementById("demo").innerHTML=god;
   }
@@ -32,6 +32,7 @@ function playSong(kid){
   xhttp2.onload = () => {
   	if(xhttp2.status==200){
   		var s = JSON.parse(xhttp2.response)
+       console.log(s)
   		document.getElementById("player").innerHTML ="";
   		document.getElementById("player").innerHTML =`<audio id='myAudio' controls autoplay='autoplay' hidden="hidden"><source src='${s.media_url}' type='audio/mpeg'>  Your browser does not support the audio tag.</audio>`;
       document.getElementById("alb").style=`img:URL(${s.image})`;
