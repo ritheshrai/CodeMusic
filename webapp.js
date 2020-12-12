@@ -35,11 +35,23 @@ function playSong(kid){
        console.log(s)
   		document.getElementById("player").innerHTML ="";
   		document.getElementById("player").innerHTML =`<audio id='myAudio' controls autoplay='autoplay' hidden="hidden"><source src='${s.media_url}' type='audio/mpeg'>  Your browser does not support the audio tag.</audio>`;
-      document.getElementById("alb").style=`img:URL(${s.image})`;
       playss();
-      bkg.style.backgroundImage = "url('"+s.imsge+"')";
+      
+   //   await document.querySelector("myAudio").play();
+
+if ("mediaSession" in navigator) {
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: s.song,
+    artist: s.primary_artists,
+    album: s.album ,
+    artwork: [
+      { src: s.image,   sizes: '500x500',   type: 'image/jpg' },
+    
+    ]
+  });
     }
-}
+}}
+
 }
 var x ; 
  function playss(){
@@ -47,6 +59,8 @@ var x ;
    x.play();
   document.getElementById("plybtn").style.display = "none";
   document.getElementById("psbtn").style.display = "initial" ;
+  
+  
  }
   function pauseSong(){
     x = document.getElementById("myAudio");
@@ -56,4 +70,16 @@ var x ;
 
    }
 
+const audio = document.getElementById("myAudio");
+
+function updatePositionState() {
+  if ("setPositionState" in navigator.mediaSession) {
+    navigator.mediaSession.setPositionState({
+      playbackRate: audio.playbackRate,
+      position: audio.currentTime
+    });
+  }
+}
+
+// When video starts playing, update duration.
 
